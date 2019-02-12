@@ -1,0 +1,37 @@
+<div class="topnav">
+  <a href="/#!/home/">Home</a>
+  <a class="active" href="/#!/draft-pool/">Draft Pool</a>
+  <a href="/#!/player-pools/">Player Pools</a>
+</div>
+
+<h1>{{ activePlayer.name | uppercase }}'S PICK</h1>
+
+<div>
+  <button ng-click="undoConfirmation()">Undo Previous Pick</button>
+</div>
+
+<div class="draft-pool" ng-repeat="section in displayCube">
+  <li ng-repeat="card in section">
+    <div ng-click="selectCard(card)" class="card" ng-class="{ 'drafted' : card.isDrafted }">
+      <img class="hover-enlarge" src="http://gatherer.wizards.com/Handlers/Image.ashx?name={{ card.name }}&amp;set=&amp;type=card">
+    </div>
+  </li>
+</div>
+
+<div id="undo-dialog" class="modal">
+  <div class="modal-content">
+    <span class="close" ng-click="cancelUndo()">&times;</span>
+    <p>Are you sure you want to undo the previous pick?</p>
+    <button class="confirm-button" ng-click="undoLastPick(activePlayer)">CONFIRM</button>
+  </div>
+</div>
+
+<div id="card-dialog" class="modal">
+  <div class="modal-content">
+    <span class="close" ng-click="cancelCardSelection()">&times;</span>
+    <h1>{{ activePlayer.name | uppercase }}</h1>
+    <p>Are you sure you want to pick {{ card.name }}?</p>
+    <img class="modal-image" src="http://gatherer.wizards.com/Handlers/Image.ashx?name={{ card.name }}&amp;set=&amp;type=card">
+    <button class="confirm-button" ng-click="pickCard(card,activePlayer)">CONFIRM</button>
+  </div>
+</div>

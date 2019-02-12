@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rotoDraftApp">
+	<head>
+		<title>Rotisserie Draft</title>
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<ng-view class="view"></ng-view>
+	</body>
+
+	<script src="js/scripts.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+	<!-- Production Database -->
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAz39JJgrIi0BbnueTDZaOspDp_hFaUhj0",
+	    authDomain: "roto-draft-app-beta.firebaseapp.com",
+	    databaseURL: "https://roto-draft-app-beta.firebaseio.com",
+	    projectId: "roto-draft-app-beta",
+	    storageBucket: "roto-draft-app-beta.appspot.com",
+	    messagingSenderId: "1049064009066"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<!-- Testing Database -->
+	<!-- <script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDRrw63TLhMa-4uasU5FnXmkoWTgWVntIE",
+	    authDomain: "roto-draft-app-test.firebaseapp.com",
+	    databaseURL: "https://roto-draft-app-test.firebaseio.com",
+	    projectId: "roto-draft-app-test",
+	    storageBucket: "roto-draft-app-test.appspot.com",
+	    messagingSenderId: "437307059977"
+	  };
+	  firebase.initializeApp(config);
+	</script> -->
+</html>
