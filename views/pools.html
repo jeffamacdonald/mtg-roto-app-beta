@@ -1,14 +1,14 @@
 <div class="topnav">
-  <a href="/mtg-roto-app-beta/#!/home/">Home</a>
-  <a href="/mtg-roto-app-beta/#!/draft-pool/">Draft Pool</a>
-  <a class="active" href="/mtg-roto-app-beta/#!/player-pools/">Player Pools</a>
+  <a href="/#!/home/">Home</a>
+  <a href="/#!/draft-pool/">Draft Pool</a>
+  <a class="active" href="/#!/player-pools/">Player Pools</a>
 </div>
 <div ng-repeat="player in drafters">
   <h1>{{ player.name | uppercase }}'S POOL</h1>
   <div class="draft-pool">
     <li ng-repeat="card in player.cardPool">
       <div class="card">
-        <img src="http://gatherer.wizards.com/Handlers/Image.ashx?name={{ card.name }}&amp;set=&amp;type=card">
+        <img class="hover-enlarge" src="http://gatherer.wizards.com/Handlers/Image.ashx?name={{ card.name }}&amp;set=&amp;type=card">
       </div>
     </li>
   </div>
