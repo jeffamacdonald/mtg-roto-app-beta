@@ -37517,6 +37517,17 @@ angular.module('rotoDraftApp', [
         }
 			}
 		})
+    .when('/draft-pool-text/', {
+      templateUrl: 'views/draftText.html',
+      controller: 'DraftCtrl',
+      resolve: {
+        'activeDraft': function($firebaseObject,activeDraftService) {
+          return activeDraftService.getActiveDraftId().then(function(draftId) {
+            return $firebaseObject(firebase.database().ref().child('draftProperties').child(draftId));
+          })
+        }
+      }
+    })
     .when('/player-pools/', {
       templateUrl: 'views/pools.html',
       controller: 'PoolsCtrl'
@@ -37575,6 +37586,11 @@ function DraftCtrl($scope,modalService,activeDraftService,activeDraft) {
 
   $scope.undoConfirmation = function() {
     document.getElementById('undo-dialog').style.display = 'block';
+  };
+
+  $scope.colorSectionArray = function(index) {
+    let colorArray = ["white","blue","black","red","green","uw","wb","wr","wg","ub","ur","ug","br","bg","rg","gold","colorless","land"];
+    return colorArray[index];
   };
 };
 })();
@@ -38000,7 +38016,8 @@ function activeDraftService($firebaseArray,$firebaseObject,$http) {
     return arr.sort(function(a,b) {
       a.typeSort = isCardCreature(a);
       b.typeSort = isCardCreature(b);
-      return (a.cmc - b.cmc) || (a.typeSort - b.typeSort);
+      let alphaSort = a.name > b.name ? 1 : -1;
+      return (a.cmc - b.cmc) || (a.typeSort - b.typeSort) || alphaSort;
     });
   };
 
